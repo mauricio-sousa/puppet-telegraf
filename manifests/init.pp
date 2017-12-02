@@ -156,12 +156,12 @@ class telegraf (
   # currently the only way how to obtain merged hashes
   # from multiple files (`:merge_behavior: deeper` needs to be
   # set in your `hiera.yaml`)
-  $_outputs = hiera_hash('telegraf::outputs', $outputs)
-  $_inputs = hiera_hash('telegraf::inputs', $inputs)
+  $_outputs = $outputs
+  $_inputs = $inputs
 
-  contain ::telegraf::install
-  contain ::telegraf::config
-  contain ::telegraf::service
+  include ::telegraf::install
+  include ::telegraf::config
+  include ::telegraf::service
 
   Class['::telegraf::install']
   -> Class['::telegraf::config']
